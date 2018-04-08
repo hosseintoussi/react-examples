@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
 import TodoInput from './components/todo_input';
 import TodoItems from './components/todo_items';
 import Counter from './components/counter';
