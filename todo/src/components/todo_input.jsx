@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import TodoItem from './todo_item';
 
 class TodoInput extends Component {
   constructor(props) {
@@ -120,19 +121,10 @@ class TodoInput extends Component {
         </form>
         {this.showPreview() &&
         <div className="list-group list-group-item">
-          <h4 className="list-group-item-heading">
-            {this.state.todoTitle}
-            <small>
-              <span className="badge badge-primary">
-                {this.state.todoPriority}
-              </span>
-            </small>
-          </h4>
-          <p>
-            <span className="glyphicon glyphicon-user" aria-hidden="true" />
-            {this.state.todoResponsible}
-          </p>
-          <p>{this.state.todoDescription}</p>
+          <TodoItem
+            todo={this.state}
+            handleRemoveTodo={() => {}}
+          />
         </div>
         }
       </div>
