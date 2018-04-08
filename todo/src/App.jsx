@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import TodoInput from './components/todo_input';
+import TodoItems from './components/todo_items';
+import Counter from './components/counter';
 
 const todos = [
   {
@@ -33,6 +35,7 @@ class App extends Component {
     };
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
   }
 
   handleRemoveTodo(index) {
@@ -52,29 +55,8 @@ class App extends Component {
       <div className="container">
         <TodoInput onAddTodo={this.handleAddTodo} />
         <hr />
-        <h4>
-          Todo Count: <span className="badge badge-secondary">{this.state.todos.length}</span>
-        </h4>
-        <ul className="list-group">
-          { this.state.todos.map((todo, index) =>
-            <li className="list-group-item" key={index}>
-              <h4 className="list-group-item-heading">
-                {todo.todoTitle}
-                <small>
-                  <span className="badge badge-primary">
-                    {todo.todoPriority}
-                  </span>
-                </small>
-              </h4>
-              <p>
-                <span className="glyphicon glyphicon-user" aria-hidden="true" />
-                {todo.todoResponsible}
-              </p>
-              <p>{todo.todoDescription}</p>
-                <button className="btn btn-danger btn-sm" onClick={this.handleRemoveTodo.bind(this, index)}><span className="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-              </li>
-          )}
-        </ul>
+        <Counter count={this.state.todos.length} />
+        <TodoItems todos={this.state.todos} handleRemoveTodo={this.handleRemoveTodo} />
       </div>
     );
   }
