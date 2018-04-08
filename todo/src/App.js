@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 
 const todos = [
   {
@@ -45,7 +44,7 @@ class TodoInput extends Component {
       todoTitle: '',
       todoResponsible: '',
       todoDescription: '',
-      todoPriority: 'Lowest'
+      todoPriority: 'Lowest',
     });
   }
 
@@ -57,6 +56,13 @@ class TodoInput extends Component {
       [name]: value
     });
   }
+
+  showPreview() {
+    return this.state.todoTitle ||
+      this.state.todoResponsible ||
+      this.state.todoDescription;
+  }
+
 
   render() {
     return (
@@ -134,12 +140,23 @@ class TodoInput extends Component {
             </div>
           </div>
         </form>
-        <div>
-          <h5>Preview</h5>
-          <di>{this.state.todoTitle ? `title: ${this.state.todoTitle}` : null }</di>
-          <div>{this.state.todoResponsible ? `Responsible: ${this.state.todoResponsible}` : null }</div>
-          <di>{this.state.todoDescription ? `title: ${this.state.todoDescription}` : null }</di>
+        {this.showPreview() &&
+        <div className="list-group list-group-item">
+          <h4 className="list-group-item-heading">
+            {this.state.todoTitle ? `title: ${this.state.todoTitle}` : null }
+            <small>
+              <span className="badge badge-primary">
+                {this.state.todoPriority}
+              </span>
+            </small>
+          </h4>
+          <p>
+            <span className="glyphicon glyphicon-user" aria-hidden="true" />
+            {this.state.todoResponsible ? `Responsible: ${this.state.todoResponsible}` : null }
+          </p>
+          <p>{this.state.todoDescription ? `title: ${this.state.todoDescription}` : null }</p>
         </div>
+        }
       </div>
     );
   }
