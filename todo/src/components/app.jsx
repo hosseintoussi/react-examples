@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import TodoInput from './components/todo_input';
-import TodoItems from './components/todo_items';
-import Counter from './components/counter';
+import TodoInput from './todo_input';
+import TodoItems from './todo_items';
+import Counter from './counter';
 
 const todos = [
   {
